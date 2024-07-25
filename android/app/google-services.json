@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "991355605843",
+    "project_id": "peopletest-f2782",
+    "storage_bucket": "peopletest-f2782.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991355605843:android:cb1e97979fcfa19dd687a6",
+        "android_client_info": {
+          "package_name": "com.testernpeople"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991355605843-qun94r9dqdg7000235r0ut8o28k3s6of.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArabcjzAMGwQkEfAcZRuuUqrNlJlkQ3Mg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991355605843-qun94r9dqdg7000235r0ut8o28k3s6of.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
