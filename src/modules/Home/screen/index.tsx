@@ -5,6 +5,8 @@ import api from '../../../services/api';
 import { PHOTOS } from '../../../utils/endpoints';
 import { Layout } from './layout';
 import { addFavourite, removeFavourite } from '../../../redux/features';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { User } from '../../../common/models/users';
 
 type TResponse = {
   id: string;
@@ -24,6 +26,7 @@ export const Home: React.FC = () => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState<User>();
 
   const onEndReached = () => {
     if (!loading && hasMore) {
@@ -41,6 +44,11 @@ export const Home: React.FC = () => {
 
   const handleRemoveFavourite = (id: string) => {
     dispatch(removeFavourite({ id }));
+  };
+
+  const getCurrentUser = async () => {
+    const currentUser = GoogleSignin.getCurrentUser();
+    setUser(currentUser?.user);
   };
 
   const photoList = useCallback(
@@ -80,6 +88,7 @@ export const Home: React.FC = () => {
   useEffect(() => {
     if (userToken) {
       photoList(6);
+      getCurrentUser();
     }
     if (!userToken) {
       photoList(4);
@@ -91,6 +100,7 @@ export const Home: React.FC = () => {
       data={{
         loading,
         userToken,
+        user
       }}
       actions={{
         onEndReached,

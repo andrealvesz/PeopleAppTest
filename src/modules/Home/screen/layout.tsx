@@ -5,6 +5,7 @@ import Screen from '../../../components/Screen';
 import Shelf from '../../../components/Shelf';
 import { useAppSelector } from '../../../redux/hooks';
 import * as S from './styles';
+import { User } from '../../../common/models/users';
 
 interface ActionsProps {
   onEndReached(): void;
@@ -12,9 +13,11 @@ interface ActionsProps {
   handleFavourited(id: string): void;
   handleRemoveFavourite(id: string): void;
 }
+
 interface DataProps {
   loading: boolean;
   userToken?: string;
+  user?: User;
 }
 
 export const Layout = ({
@@ -28,7 +31,7 @@ export const Layout = ({
 
   const theme = useTheme();
 
-  const { loading, userToken } = data;
+  const { loading, user } = data;
 
   const getItemLayout = useCallback(
     (_: any, index: number) => ({
@@ -62,11 +65,18 @@ export const Layout = ({
 
   return (
     <Screen>
-      <S.HeaderText>
-        {userToken
-          ? `LOGADO - ${card.length} CARDS`
-          : `VISITANTE - ${card.length} CARDS`}
-      </S.HeaderText>
+      <S.HeaderView>
+        {user &&
+          <S.HeaderAvatarProfileView>
+            <S.HeaderAvatarProfileImage source={{ uri: user?.photo }} />
+          </S.HeaderAvatarProfileView>
+        }
+        <S.HeaderText>
+          {user
+            ? `${user.name}`
+            : `VISITANTE - ${card.length} CARDS`}
+        </S.HeaderText>
+      </S.HeaderView>
 
       <S.ProductList
         data={card}
